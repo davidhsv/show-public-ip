@@ -5,14 +5,15 @@ const axiosInstance = axios.create({timeout: 5000});
 
 const app = express();
 const port = process.env.PORT || 80;
+const rootPath = process.env.APP_ROOT_PATH || '';
 
-app.get('/', async (req, res) => {
+app.get(rootPath + '/', async (req, res) => {
     const ip = await loadPublicIp();
     
     res.send(getResponseHtml(ip));
 })
 
-app.get('/ip', async (req, res) => {
+app.get(rootPath + '/ip', async (req, res) => {
     const ip = await loadPublicIp();
     
     res.send(ip);
